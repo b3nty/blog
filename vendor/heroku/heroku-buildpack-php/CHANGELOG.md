@@ -1,5 +1,35 @@
 # heroku-buildpack-php CHANGELOG
 
+## v113 (2016-10-19)
+
+### ADD
+
+- ext-newrelic/6.7.0 [David Zuelke]
+- ext-blackfire/1.13.0 [David Zuelke]
+- ext-apcu/5.1.6 [David Zuelke]
+- PHP/5.6.27 [David Zuelke]
+- PHP/7.0.12 [David Zuelke]
+- ext-rdkafka/1.0.0 [David Zuelke]
+- ext-rdkafka/2.0.0 [David Zuelke]
+
+## v112 (2016-09-20)
+
+### FIX
+
+- Use Composer/1.2.1 [David Zuelke]
+
+## v111 (2016-09-20)
+
+### ADD
+
+- ext-newrelic/6.6.1.172 [David Zuelke]
+- PHP/5.6.26 [David Zuelke]
+- PHP/7.0.11 [David Zuelke]
+
+### CHG
+
+- Use Composer/1.2.1 [David Zuelke]
+
 ## v110 (2016-08-26)
 
 ### ADD

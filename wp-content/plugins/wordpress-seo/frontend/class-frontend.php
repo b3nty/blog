@@ -906,8 +906,7 @@ class WPSEO_Frontend {
 			if ( is_search() ) {
 				$search_query = get_search_query();
 
-				// Regex catches case when /search/page/N without search term is itself mistaken for search term. R.
-				if ( ! empty( $search_query ) && ! preg_match( '|^page/\d+$|', $search_query ) ) {
+				if ( ! empty( $search_query ) ) {
 					$canonical = get_search_link();
 				}
 			}
@@ -915,13 +914,7 @@ class WPSEO_Frontend {
 				$canonical = WPSEO_Utils::home_url();
 			}
 			elseif ( $this->is_posts_page() ) {
-
-				$posts_page_id = get_option( 'page_for_posts' );
-				$canonical     = WPSEO_Meta::get_value( 'canonical', $posts_page_id );
-
-				if ( empty( $canonical ) ) {
-					$canonical = get_permalink( $posts_page_id );
-				}
+				$canonical = get_permalink( get_option( 'page_for_posts' ) );
 			}
 			elseif ( is_tax() || is_tag() || is_category() ) {
 
@@ -1523,7 +1516,7 @@ class WPSEO_Frontend {
 	 * @return boolean
 	 */
 	public function clean_permalink() {
-		if ( is_robots() || get_query_var( 'sitemap' ) || empty( $_GET ) ) {
+		if ( is_robots() || get_query_var( 'sitemap' ) ) {
 			return false;
 		}
 

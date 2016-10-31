@@ -27,56 +27,12 @@
         }
     },
     {
-        "name": "heroku-sys/apache",
-        "version": "2.4.20",
-        "version_normalized": "2.4.20.0",
-        "dist": {
-            "type": "heroku-sys-tar",
-            "url": "https://lang-php.s3.amazonaws.com/dist-cedar-14-stable/apache-2.4.20.tar.gz",
-            "reference": null,
-            "shasum": null
-        },
-        "require": {
-            "heroku-sys/cedar": "^14.0.0",
-            "heroku/installer-plugin": "^1.2.0"
-        },
-        "time": "2016-04-11 21:08:57",
-        "type": "heroku-sys-webserver",
-        "extra": {
-            "export": "bin/export.apache2.sh",
-            "profile": "bin/profile.apache2.sh"
-        },
-        "installation-source": "dist"
-    },
-    {
-        "name": "heroku-sys/nginx",
-        "version": "1.8.1",
-        "version_normalized": "1.8.1.0",
-        "dist": {
-            "type": "heroku-sys-tar",
-            "url": "https://lang-php.s3.amazonaws.com/dist-cedar-14-stable/nginx-1.8.1.tar.gz",
-            "reference": null,
-            "shasum": null
-        },
-        "require": {
-            "heroku-sys/cedar": "^14.0.0",
-            "heroku/installer-plugin": "^1.2.0"
-        },
-        "time": "2016-03-08 16:50:11",
-        "type": "heroku-sys-webserver",
-        "extra": {
-            "export": "bin/export.nginx.sh",
-            "profile": "bin/profile.nginx.sh"
-        },
-        "installation-source": "dist"
-    },
-    {
         "name": "heroku-sys/php",
-        "version": "5.6.25",
-        "version_normalized": "5.6.25.0",
+        "version": "5.6.27",
+        "version_normalized": "5.6.27.0",
         "dist": {
             "type": "heroku-sys-tar",
-            "url": "https://lang-php.s3.amazonaws.com/dist-cedar-14-stable/php-5.6.25.tar.gz",
+            "url": "https://lang-php.s3.amazonaws.com/dist-cedar-14-stable/php-5.6.27.tar.gz",
             "reference": null,
             "shasum": null
         },
@@ -145,7 +101,7 @@
             "heroku-sys/ext-zlib": "2.0",
             "heroku-sys/php-64bit": "self.version"
         },
-        "time": "2016-08-24 23:41:03",
+        "time": "2016-10-18 01:28:20",
         "type": "heroku-sys-php",
         "extra": {
             "export": "bin/export.php.sh",
@@ -171,6 +127,59 @@
                 "heroku-sys/ext-xmlrpc": true,
                 "heroku-sys/ext-xsl": true
             }
+        },
+        "installation-source": "dist"
+    },
+    {
+        "name": "composer.json/composer.lock",
+        "version": "dev-b8a3d2399b3f5fea3b4395da681dbe2d",
+        "version_normalized": "dev-b8a3d2399b3f5fea3b4395da681dbe2d",
+        "require": {
+            "heroku-sys/php": "^5.5.12"
+        },
+        "type": "metapackage"
+    },
+    {
+        "name": "heroku-sys/apache",
+        "version": "2.4.20",
+        "version_normalized": "2.4.20.0",
+        "dist": {
+            "type": "heroku-sys-tar",
+            "url": "https://lang-php.s3.amazonaws.com/dist-cedar-14-stable/apache-2.4.20.tar.gz",
+            "reference": null,
+            "shasum": null
+        },
+        "require": {
+            "heroku-sys/cedar": "^14.0.0",
+            "heroku/installer-plugin": "^1.2.0"
+        },
+        "time": "2016-04-11 21:08:57",
+        "type": "heroku-sys-webserver",
+        "extra": {
+            "export": "bin/export.apache2.sh",
+            "profile": "bin/profile.apache2.sh"
+        },
+        "installation-source": "dist"
+    },
+    {
+        "name": "heroku-sys/nginx",
+        "version": "1.8.1",
+        "version_normalized": "1.8.1.0",
+        "dist": {
+            "type": "heroku-sys-tar",
+            "url": "https://lang-php.s3.amazonaws.com/dist-cedar-14-stable/nginx-1.8.1.tar.gz",
+            "reference": null,
+            "shasum": null
+        },
+        "require": {
+            "heroku-sys/cedar": "^14.0.0",
+            "heroku/installer-plugin": "^1.2.0"
+        },
+        "time": "2016-03-08 16:50:11",
+        "type": "heroku-sys-webserver",
+        "extra": {
+            "export": "bin/export.nginx.sh",
+            "profile": "bin/profile.nginx.sh"
         },
         "installation-source": "dist"
     }

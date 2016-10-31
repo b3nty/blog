@@ -6,10 +6,10 @@
     "minimum-stability": "stable",
     "prefer-stable": false,
     "provide": {
-        "heroku-sys\/cedar": "14.2016.09.19"
+        "heroku-sys\/cedar": "14.2016.10.31"
     },
     "require": {
-        "heroku-sys\/php": "^5.5.17",
+        "composer.json\/composer.lock": "dev-b8a3d2399b3f5fea3b4395da681dbe2d",
         "heroku-sys\/apache": "^2.4.10",
         "heroku-sys\/nginx": "~1.8.0"
     },
@@ -27,6 +27,22 @@
         {
             "type": "composer",
             "url": "https:\/\/lang-php.s3.amazonaws.com\/dist-cedar-14-stable\/"
+        },
+        {
+            "type": "package",
+            "package": [
+                {
+                    "type": "metapackage",
+                    "name": "composer.json\/composer.lock",
+                    "version": "dev-b8a3d2399b3f5fea3b4395da681dbe2d",
+                    "require": {
+                        "heroku-sys\/php": "^5.5.12"
+                    },
+                    "replace": [],
+                    "provide": [],
+                    "conflict": []
+                }
+            ]
         }
     ]
 }

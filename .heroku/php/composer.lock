@@ -4,9 +4,17 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "74f5e54b3f969c50e0c820a80a282ee5",
-    "content-hash": "172f203efed290254c3c13d7fadf4c3e",
+    "hash": "4a4edec3fbd9211a4872808a35498770",
+    "content-hash": "0f59f6f348f1c47a420ccdec4727e52f",
     "packages": [
+        {
+            "name": "composer.json/composer.lock",
+            "version": "dev-b8a3d2399b3f5fea3b4395da681dbe2d",
+            "require": {
+                "heroku-sys/php": "^5.5.12"
+            },
+            "type": "metapackage"
+        },
         {
             "name": "heroku-sys/apache",
             "version": "2.4.20",
@@ -49,10 +57,10 @@
         },
         {
             "name": "heroku-sys/php",
-            "version": "5.6.25",
+            "version": "5.6.27",
             "dist": {
                 "type": "heroku-sys-tar",
-                "url": "https://lang-php.s3.amazonaws.com/dist-cedar-14-stable/php-5.6.25.tar.gz",
+                "url": "https://lang-php.s3.amazonaws.com/dist-cedar-14-stable/php-5.6.27.tar.gz",
                 "reference": null,
                 "shasum": null
             },
@@ -147,7 +155,7 @@
                     "heroku-sys/ext-xsl": true
                 }
             },
-            "time": "2016-08-24 23:41:03"
+            "time": "2016-10-18 01:28:20"
         },
         {
             "name": "heroku/installer-plugin",
@@ -178,7 +186,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "composer.json/composer.lock": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

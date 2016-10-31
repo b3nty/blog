@@ -9,8 +9,8 @@ if ( ! defined( 'WPSEO_VERSION' ) ) {
 	exit();
 }
 
-echo '<h2>', esc_html__( 'Sitewide meta settings', 'wordpress-seo' ), '</h2>';
-
+?><h3><?php _e( 'Sitewide meta settings', 'wordpress-seo' ); ?></h3>
+<?php
 $yform->toggle_switch( 'noindex-subpages-wpseo', $index_switch_values, __( 'Subpages of archives', 'wordpress-seo' ) );
 echo '<p>', __( 'If you want to prevent /page/2/ and further of any archive to show up in the search results, set this to "noindex".', 'wordpress-seo' ), '</p>';
 

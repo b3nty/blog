@@ -772,12 +772,10 @@ class WPSEO_OpenGraph_Image {
 	 */
 	public function __construct( $options, $image = false ) {
 		$this->options = $options;
+		$this->set_images();
 
-		if ( ! empty( $image ) && $this->add_image( $image ) ) {
-			// Safely assume an image was added so we don't need to automatically determine it anymore.
-		}
-		else {
-			$this->set_images();
+		if ( ! empty( $image ) ) {
+			$this->add_image( $image );
 		}
 	}
 
@@ -806,9 +804,6 @@ class WPSEO_OpenGraph_Image {
 		if ( is_front_page() ) {
 			$this->get_front_page_image();
 		}
-		elseif ( is_home() ) { // Posts page, which won't be caught by is_singular() below.
-			$this->get_posts_page_image();
-		}
 
 		if ( is_singular() ) {
 			$this->get_singular_image();
@@ -827,22 +822,6 @@ class WPSEO_OpenGraph_Image {
 	private function get_front_page_image() {
 		if ( $this->options['og_frontpage_image'] !== '' ) {
 			$this->add_image( $this->options['og_frontpage_image'] );
-		}
-	}
-
-	/**
-	 * Get the images of the posts page.
-	 */
-	private function get_posts_page_image() {
-
-		$post_id = get_option( 'page_for_posts' );
-
-		if ( $this->get_opengraph_image_post( $post_id ) ) {
-			return;
-		}
-
-		if ( $this->get_featured_image( $post_id ) ) {
-			return;
 		}
 	}
 
@@ -871,20 +850,18 @@ class WPSEO_OpenGraph_Image {
 	 * Get default image and call add_image
 	 */
 	private function get_default_image() {
-		if ( count( $this->images ) === 0 && isset( $this->options['og_default_image'] ) && $this->options['og_default_image'] !== '' ) {
+		if ( count( $this->images ) == 0 && isset( $this->options['og_default_image'] ) && $this->options['og_default_image'] !== '' ) {
 			$this->add_image( $this->options['og_default_image'] );
 		}
 	}
 
 	/**
-	 * If opengraph-image is set, call add_image and return true.
-	 *
-	 * @param int $post_id Optional post ID to use.
+	 * If opengraph-image is set, call add_image and return true
 	 *
 	 * @return bool
 	 */
-	private function get_opengraph_image_post( $post_id = 0 ) {
-		$ogimg = WPSEO_Meta::get_value( 'opengraph-image', $post_id );
+	private function get_opengraph_image_post() {
+		$ogimg = WPSEO_Meta::get_value( 'opengraph-image' );
 		if ( $ogimg !== '' ) {
 			$this->add_image( $ogimg );
 
