@@ -97,7 +97,8 @@ class Gitium_Submenu_Configure extends Gitium_Menu {
 		if ( $this->init_process( $_POST['remote_url'] ) ) {
 			$this->success_redirect();
 		} else {
-			$this->redirect( __( 'Could not push to remote', 'gitium' ) . ' ' . $_POST['remote_url'] );
+			global $git;
+			$this->redirect( __( 'Could not push to remote: ', 'gitium' ) . $_POST['remote_url'] . ' ERROR: ' . serialize( $git->get_last_error() ) );
 		}
 	}
 
@@ -108,7 +109,8 @@ class Gitium_Submenu_Configure extends Gitium_Menu {
 		check_admin_referer( 'gitium-admin' );
 		$this->git->add();
 
-		$branch       = $_POST['tracking_branch'];
+		$branch = $_POST['tracking_branch'];
+		set_transient( 'gitium_remote_tracking_branch', $branch );
 		$current_user = wp_get_current_user();
 
 		$commit = $this->git->commit( __( 'Merged existing code from ', 'gitium' ) . get_home_url(), $current_user->display_name, $current_user->user_email );

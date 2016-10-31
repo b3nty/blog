@@ -230,7 +230,9 @@ if ( ! function_exists( 'gitium_release_merge_lock' ) ) :
 		list( $gitium_lock_path, $gitium_lock_handle ) = $lock;
 		flock( $gitium_lock_handle, LOCK_UN );
 		fclose( $gitium_lock_handle );
-		unlink( $gitium_lock_path );
+		if ( file_exists( $gitium_lock_path ) ) {
+			unlink( $gitium_lock_path );
+		}
 	}
 endif;
 
@@ -266,6 +268,46 @@ function gitium_check_after_event( $plugin, $event = 'activation' ) {
 			$name = $plugin;
 		}
 		gitium_auto_push( _gitium_format_message( $name, $version, "after $event of" ) );
+	}
+}
+
+function gitium_update_remote_tracking_branch() {
+	global $git;
+	$remote_tracking_branch = $git->get_remote_tracking_branch();
+	set_transient( 'gitium_remote_tracking_branch', $remote_tracking_branch );
+
+	return $remote_tracking_branch;
+}
+
+function _gitium_get_remote_tracking_branch( $update_transient = false ) {
+	if ( $update_transient ) {
+		return gitium_update_remote_tracking_branch();
+	}
+
+	if ( ! $update_transient && ( false !== ( $remote_tracking_branch = get_transient( 'gitium_remote_tracking_branch' ) ) ) ) {
+		return $remote_tracking_branch;
+	} else {
+		return gitium_update_remote_tracking_branch();
+	}
+}
+
+function gitium_update_is_versioned() {
+	global $git;
+	$is_versioned = $git->is_versioned();
+	set_transient( 'gitium_is_versioned', $git->get_version() );
+
+	return $is_versioned;
+}
+
+function _gitium_is_versioned( $update_transient = false ) {
+	if ( $update_transient ) {
+		return gitium_update_is_versioned();
+	}
+
+	if ( ! $update_transient && ( false !== ( $is_versioned = get_transient( 'gitium_is_versioned' ) ) ) ) {
+		return $is_versioned;
+	} else {
+		return gitium_update_is_versioned();
 	}
 }
 

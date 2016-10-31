@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Gitium
- * Version: 1.0-rc5
+ * Version: 1.0-rc6
  * Author: Presslabs
  * Author URI: https://www.presslabs.com
  * License: GPL2
@@ -72,6 +72,26 @@ function _gitium_make_ssh_git_file_exe() {
 	}
 }
 register_activation_hook( __FILE__, '_gitium_make_ssh_git_file_exe' );
+
+function gitium_deactivation() {
+	delete_transient( 'gitium_git_version' );
+}
+register_deactivation_hook( __FILE__, 'gitium_deactivation' );
+
+function gitium_uninstall_hook() {
+	delete_transient( 'gitium_is_versioned' );
+	delete_transient( 'gitium_remote_tracking_branch' );
+	delete_transient( 'gitium_is_versioned' );
+	delete_transient( 'gitium_remote_disconnected' );
+	delete_transient( 'gitium_uncommited_changes' );
+	delete_transient( 'gitium_git_version' );
+	delete_transient( 'gitium_versions' );
+	delete_transient( 'gitium_menu_bubble' );
+
+	delete_option( 'gitium_keypair' );
+	delete_option( 'gitium_webhook_key' );
+}
+register_uninstall_hook( __FILE__, 'gitium_uninstall_hook' );
 
 /* Array
 (

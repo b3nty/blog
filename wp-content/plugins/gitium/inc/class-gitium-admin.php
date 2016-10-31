@@ -24,7 +24,11 @@ class Gitium_Admin {
 		$git->set_key( $git_private_key );
 
 		if ( current_user_can( GITIUM_MANAGE_OPTIONS_CAPABILITY ) ) {
-			new Gitium_Requirements();
+			$req = new Gitium_Requirements();
+			if ( ! $req->get_status() ) {
+				return false;
+			}
+
 			if ( $this->has_configuration() ) {
 				new Gitium_Submenu_Status();
 				new Gitium_Submenu_Commits();
@@ -37,8 +41,7 @@ class Gitium_Admin {
 	}
 
 	public function has_configuration() {
-		global $git;
-		return $git->is_versioned() && $git->get_remote_tracking_branch();
+		return _gitium_is_versioned() && _gitium_get_remote_tracking_branch();
 	}
 }
 
